@@ -1,0 +1,105 @@
+
+/* heights */
+.UI h1 {
+    font-size: 30vh;
+}
+
+.UI h2 {
+    font-size: 5vh;
+    color: gray;
+}
+
+
+/* RANDOMIZER */
+
+.UI {
+    z-index: 1;
+
+    text-align: center;
+    position: fixed;
+    top: 40vh;
+    left: 50%;
+    width: 80vw;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    font-family: sans-serif;
+
+    user-select: none;
+    -moz-user-select: none;
+    cursor: pointer;
+}
+
+.UI h1 {
+    transition: color .5s;
+}
+
+h1.init, h1.delay {
+    color: orange;
+}
+
+h1.finish {
+    color: green;
+}
+
+h1.yes {
+    color: green;
+}
+
+h1.no {
+    color: red;
+}
+
+h1.north {
+    color: red;
+}
+
+h1.south {
+    color: blue;
+}
+
+h1.east {
+    color: green;
+}
+
+h1.west {
+    color: gray;
+}
+
+/* MENU */
+
+.menu{
+    z-index: 2;
+
+    text-align: center;
+    position: fixed;
+    top: 10vh;
+    left: 50%;
+    width: 80vw;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.menu > a, .menu > b {
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+.menu > a::before, .menu > b::before {
+    content: '[';
+    color: black !important;
+    text-decoration: none;
+}
+
+.menu > a::after, .menu > b::after {
+    content: ']';
+    color: black !important;
+    text-decoration: none;
+}
+
+.menu > a {
+    color: blue;
+}
