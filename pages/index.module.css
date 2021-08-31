@@ -6,7 +6,16 @@
 
 .UI h2 {
     font-size: 5vh;
-    color: gray;
+}
+
+@media all and (orientation: portrait) {
+    .UI h1 {
+        font-size: 20vw;
+    }
+    
+    .UI h2 {
+        font-size: 10vw;
+    }
 }
 
 
@@ -19,7 +28,7 @@
     position: fixed;
     top: 40vh;
     left: 50%;
-    width: 80vw;
+    width: 95vw;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 
@@ -32,6 +41,10 @@
 
 .UI h1 {
     transition: color .5s;
+}
+
+.UI h2 {
+    color: gray;
 }
 
 h1.init, h1.delay {
