@@ -38,8 +38,7 @@ export default class Randomizer<T> extends React.Component<RandomizerProps<T>, R
     private readonly didRandomize = () => {
         const { choices } = this.props;
         this.timeout = undefined;
-        const result = choices[Math.floor(Math.random()*choices.length)];
-        this.setState({ progress: 'finish', result });
+        this.setState({ progress: 'finish', result: random(choices) });
     }
 
     componentDidMount() {
@@ -62,4 +61,31 @@ export default class Randomizer<T> extends React.Component<RandomizerProps<T>, R
 
         return onFinish(this.doRandomize, result);
     }
+}
+
+/** random randomly chooses from choices */
+export function random<T>(choices: Array<T>): T {
+    const count = choices.length;
+    
+    // randomly determine index using crypto getRandomValues
+    let index: number;
+    if (crypto && crypto.getRandomValues) {
+        const numBytes = Math.ceil(count/(1 << 8));
+        const buffer = new Uint8Array(numBytes);
+
+        do {
+            crypto.getRandomValues(buffer);
+    
+            index = 0;
+            buffer.forEach((b, i) =>
+                index += b << i
+            );
+        } while(index >= count);
+    
+    // or falling back to Math.random()
+    } else {
+        index = Math.floor(Math.random()*count);
+    }
+
+    return choices[index];
 }
