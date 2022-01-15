@@ -14,7 +14,7 @@ interface Preset {
 
 const PRESETS: Array<Preset> = [
     {
-        url: '',
+        url: 'coin',
         title: 'Flip (a coin) for everyone',
         text: 'Coin',
         props: {
@@ -29,7 +29,7 @@ const PRESETS: Array<Preset> = [
         }
     },
     {
-        url: 'yesno',
+        url: '',
         title: 'Decide for everyone',
         text: 'Yes / No',
         props: {

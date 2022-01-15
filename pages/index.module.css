@@ -1,4 +1,3 @@
-
 /* heights */
 .UI h1 {
     font-size: 30vh;
@@ -103,16 +102,26 @@ h1.west {
 
 .menu > a::before, .menu > b::before {
     content: '[';
-    color: black !important;
     text-decoration: none;
 }
 
 .menu > a::after, .menu > b::after {
     content: ']';
-    color: black !important;
     text-decoration: none;
 }
 
 .menu > a {
     color: blue;
+}
+
+.menu > a::before, .menu > b::before,
+.menu > a::after, .menu > b::after {
+    color: black !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .menu > a::before, .menu > b::before,
+    .menu > a::after, .menu > b::after {
+        color: white !important;
+    }
 }
