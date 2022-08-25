@@ -3,7 +3,7 @@
     font-size: 30vh;
 }
 
-.UI h2 {
+.UI h2, .UI .editor {
     font-size: 5vh;
 }
 
@@ -12,7 +12,7 @@
         font-size: 20vw;
     }
     
-    .UI h2 {
+    .UI h2, .UI .editor {
         font-size: 10vw;
     }
 }
@@ -38,12 +38,21 @@
     cursor: pointer;
 }
 
+.UI.editor {
+    cursor: default;
+}
+
 .UI h1 {
     transition: color .5s;
 }
 
 .UI h2 {
     color: gray;
+}
+
+.UI .editor {
+    color: darkgray;
+    cursor: text;
 }
 
 h1.init, h1.delay {

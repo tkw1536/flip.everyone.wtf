@@ -59,6 +59,18 @@ const PRESETS: Array<Preset> = [
         }
     },
     {
+        url: 'custom',
+        title: 'Custom',
+        text: '',
+        props: {
+            choices: ["never", "used"], // dynamically filled
+            extraText: () => ({ text: "Click to randomize" }),
+            initText: () => ({ text: "Randomizing", className: style.init }),
+            delayText: () => ({ text: "Randomizing", className: style.delay }),
+            finishText: (result: string) => ({ text: 'Custom' }), // dynamically failed
+        }
+    },
+    {
         url: 'yes',
         title: 'Yes?',
         text: '',
@@ -106,6 +118,52 @@ export default class extends React.Component<{ preset: string }> {
     }
 }
 
+interface CustomState {
+    options: Array<string>;
+    loaded: boolean;
+}
+
+export class Custom extends React.Component {
+    state: CustomState = { options: [], loaded: false }
+    componentDidMount() {
+        const options = location.hash.substring(1).split(",");
+
+        // quick and dirty check to see if the options are valid!
+        if (options.length == 0 || options.map(e => e.length > 0).indexOf(true) === -1) {
+            return
+        }
+        this.setState({ loaded: true, options: options })
+    }
+    private customProps({ options }: CustomState): SRandomizerProps<string> {
+        return {
+            auto: true,
+            choices: options, // dynamically filled
+            extraText: () => ({ text: "Click to randomize" }),
+            initText: () => ({ text: "Randomizing", className: style.init }),
+            delayText: () => ({ text: "Randomizing", className: style.delay }),
+            finishText: (text: string) => ({ text }), // dynamically failed
+        };
+
+    }
+    render() {
+            const url = "/custom/";
+            const title = "Custom";
+            const { loaded, options } = this.state;
+
+            return <>
+                <Head><title>{title}</title></Head>
+    
+                <header className={style.menu}>
+                    <Menu here={url} />
+                </header>
+    
+                <div className={style.UI}>
+                    {loaded ? <SRandomizer {...this.customProps({ loaded, options })} /> : <h1 className={style.delay}>Randomizing</h1> }
+                </div>
+            </>;
+    }
+}
+
 interface MenuProps {
     here: string;
 }
@@ -119,7 +177,7 @@ class Menu extends React.Component<MenuProps> {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const presets = PRESETS.filter(({ url }) => url !== '').map(({ url }) => ({ params: { preset: url } }));
+    const presets = PRESETS.filter(({ url }) => url !== '' && url !== 'custom').map(({ url }) => ({ params: { preset: url } }));
     return {
         paths: presets,
         fallback: false,
