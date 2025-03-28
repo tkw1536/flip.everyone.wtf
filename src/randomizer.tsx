@@ -1,13 +1,13 @@
 import * as React from "react";
 
 interface RandomizerProps<T> {
-    choices: Array<T>,
+    choices: Array<T>;
     auto?: boolean;
-    delay?: number,
+    delay?: number;
 
-    onInit: (randomize: () => void) => React.ReactChild,
-    onDelay: (randomize: () => void) => React.ReactChild,
-    onFinish: (randomize: () => void, result: T) => React.ReactChild,
+    onInit: (randomize: () => void) => React.ReactNode;
+    onDelay: (randomize: () => void) => React.ReactNode;
+    onFinish: (randomize: () => void, result: T) => React.ReactNode;
 }
 
 interface RandomizerState<T> {

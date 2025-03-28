@@ -171,7 +171,7 @@ class Menu extends React.Component<MenuProps> {
     render() {
         const { here } = this.props;
         return PRESETS.filter(({ text }) => text!='').map(({ text, url }) => (
-            url === here ? <b key={url}>{text}</b> : <Link href={url === '' ? '/' : url} key={url}><a>{text}</a></Link>
+            url === here ? <b key={url}>{text}</b> : <Link href={url === '' ? '/' : url} key={url}>{text}</Link>
         ));
     }
 }

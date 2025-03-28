@@ -18,7 +18,7 @@ export interface SRandomizerProps<T extends string> {
 }
 
 export default class SRandomizer<T extends string> extends React.Component<SRandomizerProps<T>> {
-    private readonly renderAlways = (randomize: () => void, child: React.ReactChild) => {
+    private readonly renderAlways = (randomize: () => void, child: React.ReactNode) => {
         const { className, text } = this.props.extraText();
         return <div onClick={randomize}>
             {child}
